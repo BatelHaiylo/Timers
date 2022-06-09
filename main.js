@@ -81,46 +81,98 @@ function timeDown(){
 //     }, 1000);
 //   }
 
-var timerId ;
-function startRunning(){
-    timerId = setInterval(()=>{
-        timeDown()
-    }, 1000);
-}
+// var timerId ;
+// function startRunning(){
+//     timerId = setInterval(()=>{
+//         timeDown()
+//     }, 1000);
+// }
 
-function stopRunning(){
-    clearInterval(timerId);
-}
+// function stopRunning(){
+//     clearInterval(timerId);
+// }
 
-function complexBtn(){
-    if(timerId == null){
-        startRunning()
-        btn_start_end.innerText = "STOP";
-    }
-    else{
-        stopRunning();
-        btn_start_end.innerText = "RUN";
-        btn_start_end.style.backgroundcolor = "orange";
-        timerId = null
-    }
-}
+// function complexBtn(){
+//     if(timerId == null){
+//         startRunning()
+//         btn_start_end.innerText = "STOP";
+//     }
+//     else{
+//         stopRunning();
+//         btn_start_end.innerText = "RUN";
+//         btn_start_end.style.backgroundcolor = "orange";
+//         timerId = null
+//     }
+// }
+
+// function alarmClock(){
+//     var userSetTime = document.getElementById("alarm_clock").value
+//     var nowTime = new Date()
+//     var userSetTimeHour = parseInt( userSetTime.substr(0,3))
+//     var userSetTimeMinutes =parseInt (userSetTime.substr(4))
+//     var globalHour =nowTime.getHours()
+//     var globalMinute =nowTime.getMinutes()
+//     var remainTime;
+
+//     if(userSetTimeMinutes == 00){
+//         userSetTimeMinutes = 60
+//         remainTime = Math.abs(userSetTimeMinutes - globalMinute)
+//     }
+//     if(globalHour<userSetTimeHour){
+//         remainTime = Math.abs(userSetTimeMinutes-globalMinute)
+//     }
+//     else{
+//         remainTime = Math.abs((userSetTimeHour-globalHour))+" : "+Math.abs((userSetTimeMinutes-globalMinute))
+//     }
+
+    
+//     document.getElementById("time_left").innerText = remainTime
+// }
+
+
+
+    var remainTime=0
 
 function alarmClock(){
+
     var userSetTime = document.getElementById("alarm_clock").value
+    var userHour = userSetTime.substr(0,2)
+    var userMinutes =userSetTime.substr(3,2)
+
     var nowTime = new Date()
-    var userSetTimeHour = parseInt( userSetTime.substr(0,3))
-    var userSetTimeMinutes =parseInt (userSetTime.substr(3,5))
     var globalHour =nowTime.getHours()
     var globalMinute =nowTime.getMinutes()
-    var remainTime = Math.abs((userSetTimeHour-globalHour))+" : "+Math.abs((userSetTimeMinutes-globalMinute))
 
-    if(userSetTimeMinutes == 00){
-        userSetTimeMinutes = 60
-        remainTime = Math.abs(userSetTimeMinutes - globalMinute)
-    }
-    if(globalHour<userSetTimeHour){
-        remainTime = Math.abs(userSetTimeMinutes-globalMinute)
-    }
+    
+        // if(userMinutes == 00){
+        //    userMinutes = 60
+        //    minutCalcu = Math.abs(userMinutes - globalMinute)
+        // //    hourtCalcu = Math.abs(userHour-globalHour)
+        //    remainTime = userHour-globalHour + " : " + minutCalcu
+        // }
+        // if(globalHour<userHour){
+        //     hourCalcu = Math.abs(userMinutes-globalMinute)
+        //     // remainTime = hourCalcu-10 + " : " + minutCalcu
+        // }
+        // else {
+        //     remainTime = Math.abs((userHour-globalHour))+ " : " +Math.abs((userMinutes-globalMinute))
+        // }
 
+        if(userMinutes == 00){
+            userMinutes = 60
+            minutCalcu = Math.abs(userMinutes - globalMinute)
+         //    hourtCalcu = Math.abs(userHour-globalHour)
+            remainTime = userHour-globalHour + " : " + minutCalcu
+         }
+         if(globalHour<userHour){
+             hourCalcu = Math.abs(userMinutes-globalMinute)
+             // remainTime = hourCalcu-10 + " : " + minutCalcu
+         }
+         else {
+             remainTime = Math.abs((userHour-globalHour))+ " : " +Math.abs((userMinutes-globalMinute))
+         }
+ 
+    
     document.getElementById("time_left").innerText = remainTime
 }
+
